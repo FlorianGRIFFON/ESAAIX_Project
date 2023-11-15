@@ -12,8 +12,8 @@ int scaninput()
             case 'a':
                 return 0;
                 break;
-            case 'Z':
-            case 'z':
+            case 'B':
+            case 'b':
                 return 1;
                 break;
             case 'E':
