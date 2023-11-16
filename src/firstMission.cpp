@@ -6,7 +6,7 @@ bool firstMission()
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     std::cout << "He is very angry at you for some reason, you must defeat it." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    std::cout << "Do you wish to use : \n-Fireball (a)\n-Sword (z)" << std::endl;
+    std::cout << "Do you wish to use : \n-Fireball (a)\n-Sword (b)" << std::endl;
 
     int choice = scaninput();
 
