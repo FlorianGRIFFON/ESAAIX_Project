@@ -1,29 +1,43 @@
 #include "../include/include.hpp"
+#include "../include/json.hpp"
 
-int scaninput()
-{
-    std::string userInput;
-    std::getline(std::cin, userInput);
+using json = nlohmann::json;
 
-    if (userInput.size() == 1) {
-        char key = userInput[0];
-        switch (key) {
-            case 'A':
-            case 'a':
-                return 0;
-                break;
-            case 'B':
-            case 'b':
-                return 1;
-                break;
-            case 'E':
-            case 'e':
-                return 2;
-                break;
-            default:
-                return -1;
-                break;
+dialog findDialogByID(const std::vector<dialog>& dialogs, int id) {
+    for (const auto& d : dialogs) {
+        if (d.id == id) {
+            return d;
         }
     }
-    return -1;
+    // Return an empty dialog if the ID is not found
+    return dialog{};
+}
+
+
+std::vector<dialog> parseDialogsFromFile(const std::string& filePath) {
+    std::ifstream file(filePath);
+    std::vector<dialog> dialogs;
+
+    if (file.is_open()) {
+        json jsonData;
+        file >> jsonData;
+
+        for (const auto& item : jsonData) {
+            dialog d;
+            d.id = item["id"];
+            d.text = item["Text"];
+            d.isChoice = item["isChoice"];
+            d.nextA = item["nextA"];
+            d.nextB = item["nextB"];
+            d.nextE = item["nextE"];
+
+            dialogs.push_back(d);
+        }
+
+        file.close();
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+    return dialogs;
 }

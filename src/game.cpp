@@ -1,5 +1,4 @@
 #include "../include/include.hpp"
-#include "../include/dialogs.hpp"
 
 void drawTextOnDialog(sf::RenderWindow& window, sf::Font& font, const std::string& text) {
     sf::Text dialogText;
@@ -20,7 +19,7 @@ void drawTextOnDialog(sf::RenderWindow& window, sf::Font& font, const std::strin
         window.display();
 
         // Adjust the speed at which the characters are displayed (you can modify this value)
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }
 }
 
@@ -36,6 +35,14 @@ void resetWindow(sf::RenderWindow& window, std::vector<sf::RectangleShape>& toDr
 }
 
 int main(int ac, char **av) {
+    if (ac != 2) {
+        std::cout << "Usage: ./program_name file_path" << std::endl;
+        return 1;
+    }
+
+    std::string filePath = av[1];
+    std::vector<dialog> vectorDialogs = parseDialogsFromFile(filePath);
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "RPG Game Example");
 
     // Load font
@@ -65,35 +72,31 @@ int main(int ac, char **av) {
     toDraw.push_back(dialogBox);
     toDraw.push_back(border);
 
-    std::vector <std::string> textToDisplay;
-    textToDisplay.push_back(textOrigin);
-
     // Variable to store the user's choice
-    char userChoice = '\0';
+    int currentId = 0;
 
     resetWindow(window, toDraw);
 
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
+                return 0;
+            }
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape) {
                     window.close();
                     return 0;
                 }
-                else if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::E) {
-                    userChoice = static_cast<char>(event.key.code);
-                }
             }
         }
 
         // If there are texts in the vector to display
-        if (!textToDisplay.empty()) {
-            std::string displayText = textToDisplay.front();
-
-            drawTextOnDialog(window, font, displayText);
+        if (!vectorDialogs.empty()) {
+            dialog currentDialog = findDialogByID(vectorDialogs, currentId);
+            
+            drawTextOnDialog(window, font, currentDialog.text);
 
             bool proceedToNextText = false;
 
@@ -101,39 +104,33 @@ int main(int ac, char **av) {
             while (!proceedToNextText) {
                 sf::Event event;
                 while (window.pollEvent(event)) {
-                    if (event.type == sf::Event::Closed)
+                    if (event.type == sf::Event::Closed) {
                         window.close();
-                    else if (event.type == sf::Event::KeyPressed) {
-                        if (event.key.code == sf::Keyboard::Escape) {
-                            window.close();
-                            return 0;
+                        return 0;
+                    } else if (event.type == sf::Event::KeyPressed) {
+                        if (currentDialog.isChoice) {
+                            if (event.key.code == sf::Keyboard::Escape) {
+                                window.close();
+                                return 0;
+                            }   else if (event.key.code == sf::Keyboard::A) {
+                                proceedToNextText = true;
+                                currentId = currentDialog.nextA;
+                            } else if (event.key.code == sf::Keyboard::B) {
+                                proceedToNextText = true;
+                                currentId = currentDialog.nextB;
+                            } else if (event.key.code == sf::Keyboard::E) {
+                                proceedToNextText = true;
+                                currentId = currentDialog.nextE;
+                            }
                         } else if (event.key.code == sf::Keyboard::Space) {
                             proceedToNextText = true;
+                            currentId = currentDialog.nextA;
                         }
                     }
                 }
             }
-
-            textToDisplay.erase(textToDisplay.begin());
+            
             resetWindow(window, toDraw);
-        }
-
-        // If the user has made a choice
-        if (userChoice != '\0') {
-            std::string displayText;
-
-            // Set the text to display based on the user's choice
-            if (userChoice == 'A') {
-                displayText = textA;
-            } else if (userChoice == 'B') {
-                displayText = textB;
-            } else if (userChoice == 'E') {
-                displayText = textE;
-            }
-
-            // Display the text in the dialog box
-            textToDisplay.push_back(displayText);
-            userChoice = '\0'; // Reset user's choice for the next iteration
         }
     }
 

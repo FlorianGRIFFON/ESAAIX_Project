@@ -26,7 +26,6 @@ void printActionA() {
   if ((millis() - lastDebounceTimeA) > debounceDelay) {
     Serial.println("PrintActionA");
     Keyboard.write('q');
-    Keyboard.write(KEY_RETURN);
     ballInCupA = true;
     lastDebounceTimeA = millis();
   }
@@ -36,7 +35,6 @@ void printActionB() {
   if ((millis() - lastDebounceTimeB) > debounceDelay) {
     Serial.println("PrintActionB");
     Keyboard.write('b');
-    Keyboard.write(KEY_RETURN);
     ballInCupB = true;
     lastDebounceTimeB = millis();
   }
@@ -45,7 +43,6 @@ void printActionB() {
 void printActionE() {
   Serial.println("PrintActionE");
   Keyboard.write('e');
-  Keyboard.write(KEY_RETURN);
 }
 
 void handleButtonInterrupt() {
