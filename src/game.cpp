@@ -108,11 +108,12 @@ int main(int ac, char **av) {
                         window.close();
                         return 0;
                     } else if (event.type == sf::Event::KeyPressed) {
+                        if (event.key.code == sf::Keyboard::Escape) {
+                            window.close();
+                            return 0;
+                        }
                         if (currentDialog.isChoice) {
-                            if (event.key.code == sf::Keyboard::Escape) {
-                                window.close();
-                                return 0;
-                            }   else if (event.key.code == sf::Keyboard::A) {
+                            if (event.key.code == sf::Keyboard::A) {
                                 proceedToNextText = true;
                                 currentId = currentDialog.nextA;
                             } else if (event.key.code == sf::Keyboard::B) {

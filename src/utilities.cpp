@@ -13,7 +13,6 @@ dialog findDialogByID(const std::vector<dialog>& dialogs, int id) {
     return dialog{};
 }
 
-
 std::vector<dialog> parseDialogsFromFile(const std::string& filePath) {
     std::ifstream file(filePath);
     std::vector<dialog> dialogs;
