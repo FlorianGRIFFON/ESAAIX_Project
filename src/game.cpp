@@ -23,13 +23,35 @@ void drawTextOnDialog(sf::RenderWindow& window, sf::Font& font, const std::strin
     }
 }
 
+void resetWindowImg(sf::RenderWindow& window, std::vector<sf::RectangleShape>& toDraw, std::vector<sf::Sprite> toDrawParsed) {
+    window.clear();
+
+    // Draw background
+    window.draw(toDraw.at(0));
+
+    // Draw img from json
+    for (auto& img : toDrawParsed) {
+        window.draw(img);
+    }
+
+    // Draw dialog box
+    window.draw(toDraw.at(1));
+    window.draw(toDraw.at(2));
+
+    window.display();
+}
+
 // Function to reset the window and draw shapes
 void resetWindow(sf::RenderWindow& window, std::vector<sf::RectangleShape>& toDraw) {
     window.clear();
 
-    for (auto& rect : toDraw) {
-        window.draw(rect);
-    }
+    // Draw background
+    window.draw(toDraw.at(0));
+
+
+    // Draw dialog box
+    window.draw(toDraw.at(1));
+    window.draw(toDraw.at(2));
 
     window.display();
 }
@@ -47,7 +69,7 @@ int main(int ac, char **av) {
 
     // Load font
     sf::Font font;
-    if (!font.loadFromFile("ressources/arial.ttf")) {
+    if (!font.loadFromFile("ressources/font/arial.ttf")) {
         std::cout << "Font file not found!" << std::endl;
         return -1;
     }

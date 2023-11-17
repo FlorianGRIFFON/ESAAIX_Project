@@ -3,49 +3,37 @@
         "id": 0,
         "Text": "You are a novice swordsman, traveling through the dangerous land of\nFethrir.\n",
         "isChoice": false,
-        "nextA": 1,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 1
     },
     {
         "id": 84,
         "Text": "Game Over. You are dead.\nNice try buddy.",
         "isChoice": false,
-        "nextA": 0,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 0
     },
     {
         "id": 42,
         "Text": "End of the current version.\n Congrats for beating the game!",
         "isChoice": false,
-        "nextA": 0,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 0
     },
     {
         "id": 1,
         "Text": "You are only wielding a rusty sword, but despite that you are filled with\ncourage!\n",
         "isChoice": false,
-        "nextA": 2,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 2
     },
     {
         "id": 2,
         "Text": "On your way to the castle of Mirihidor, you encounter a wandering goblin.\n",
         "isChoice": false,
-        "nextA": 3,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 3
     },
     {
         "id": 3,
         "Text": "He is not that scary and you can choose to ignore him,but he has shiny\nboots that could sell well in the castle.\n",
         "isChoice": false,
-        "nextA": 4,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 4
     },
     {
         "id": 4,
@@ -59,25 +47,19 @@
         "id": 5,
         "Text": "You decide to ignore the goblin.",
         "isChoice": false,
-        "nextA": 12,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 12
     },
     {
         "id": 6,
         "Text": "You rush to the goblin, sure of your victory",
         "isChoice": false,
-        "nextA": 8,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 8
     },
     {
         "id": 7,
         "Text": "In your inability to decide, the goblin sees you and decide to attack you.",
         "isChoice": false,
-        "nextA": 8,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 8
     },
     {
         "id": 8,
@@ -91,32 +73,24 @@
         "id": 9,
         "Text": "Using your rusty sword, you slice and dice the goblin easily.\nThe shiny boots are yours!",
         "isChoice": false,
-        "nextA": 12,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 12
     },
     {
         "id": 10,
         "Text": "Magic? You don't know any magic you are a warrior!\nTrying your best to cast a spell, you look dangerous enough to scare the\ngoblin away.\nGoodbye shiny boots...",
         "isChoice": false,
-        "nextA": 12,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 12
     },
     {
         "id": 11,
         "Text": "You are not using your sword, nor magic!\nThe goblin is not weirded out by your inaction.\nHe rushes at you and stab you in the chest!\n",
         "isChoice": false,
-        "nextA": 84,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 84
     },
     {
         "id": 12,
         "Text": "You quickly arrive in the castle, without much other action on your way.\n",
         "isChoice": false,
-        "nextA": 42,
-        "nextB": 0,
-        "nextE": 0
+        "nextA": 42
     }
 ]

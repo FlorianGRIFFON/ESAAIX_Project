@@ -27,8 +27,20 @@ std::vector<dialog> parseDialogsFromFile(const std::string& filePath) {
             d.text = item["Text"];
             d.isChoice = item["isChoice"];
             d.nextA = item["nextA"];
-            d.nextB = item["nextB"];
-            d.nextE = item["nextE"];
+            
+            // Check if "nextB" exists in the JSON, otherwise default it to 0
+            if (item.find("nextB") != item.end()) {
+                d.nextB = item["nextB"];
+            } else {
+                d.nextB = 0; // Default value
+            }
+            
+            // Check if "nextE" exists in the JSON, otherwise default it to 0
+            if (item.find("nextE") != item.end()) {
+                d.nextE = item["nextE"];
+            } else {
+                d.nextE = 0; // Default value
+            }
 
             dialogs.push_back(d);
         }
@@ -40,3 +52,4 @@ std::vector<dialog> parseDialogsFromFile(const std::string& filePath) {
 
     return dialogs;
 }
+/*  */

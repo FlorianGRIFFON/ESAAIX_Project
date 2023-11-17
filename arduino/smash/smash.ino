@@ -1,14 +1,18 @@
+#include "Keyboard.h"
+
 const int ledPin = 13;       // LED connected to digital pin 13
 const int knockSensor = A0;  // the piezo is connected to analog pin 0
 const int threshold = 35;   // threshold value to decide when the detected sound is a knock or not
-const int outputPin = 3;
+// const int outputPin = 3;
 
 // these variables will change:
 int sensorReading = 0;  // variable to store the value read from the sensor pin
 
 void setup() {
   Serial.begin(115200);       // use the serial port
-  pinMode(outputPin, OUTPUT);
+  // pinMode(outputPin, OUTPUT);
+
+  Keyboard.begin();
 }
 
 void loop() {
@@ -20,9 +24,11 @@ void loop() {
     // send the string "Knock!" back to the computer, followed by newline
     Serial.print("Knock: ");
     Serial.println(sensorReading);
-    digitalWrite(outputPin, HIGH);
-    delay(100);
-    digitalWrite(outputPin, LOW);
+    Keyboard.write(' ');
+
+    // digitalWrite(outputPin, HIGH);
+    // delay(100);
+    // digitalWrite(outputPin, LOW);
   }
   delay(10);  // delay to avoid overloading the serial port buffer
 }

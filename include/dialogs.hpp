@@ -1,4 +1,6 @@
-#include <string>
+#pragma once
+
+#include "include.hpp"
 
 struct dialog {
     int id;
@@ -7,4 +9,7 @@ struct dialog {
     int nextA;
     int nextB;
     int nextE;
+    std::vector<std::string> imgPath;
+    std::vector<float> xPos;
+    std::vector<float> yPos;
 };
